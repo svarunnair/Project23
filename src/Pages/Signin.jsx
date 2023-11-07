@@ -43,7 +43,7 @@ export default function Signin() {
       password:password
     }
     dispatch(postSignin(data))
-    navigate('/home')
+    navigate('/movie')
   }
 
 

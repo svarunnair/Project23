@@ -2,17 +2,17 @@
   "data": [
     {
       "seat": 1,
-      "booked": true,
+      "booked": false,
       "id": 1
     },
     {
       "seat": 2,
-      "booked": true,
+      "booked": false,
       "id": 2
     },
     {
       "seat": 3,
-      "booked": true,
+      "booked": false,
       "id": 3
     },
     {
