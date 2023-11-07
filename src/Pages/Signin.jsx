@@ -13,6 +13,7 @@ import {
   Text,
   useColorModeValue,
   useStatStyles,
+  useToast,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -25,6 +26,7 @@ export default function Signin() {
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
   const dispatch=useDispatch()
+  const toast=useToast()
 
   const handleClick=()=>{
     navigate('/signup')
@@ -44,6 +46,13 @@ export default function Signin() {
     }
     dispatch(postSignin(data))
     navigate('/movie')
+    toast({
+      title:"Login successfull",
+      description:"select your moviet",
+      status:"success",
+      duration:2000,
+      isClosable:true
+  })
   }
 
 

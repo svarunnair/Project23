@@ -1,7 +1,7 @@
 import { Button, Center, Grid, Link, grid } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getData, patchData, postPayment } from '../Redux/Data/action'
+import { deletePayment, getData, patchData, postPayment } from '../Redux/Data/action'
 import { color } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 
@@ -26,17 +26,26 @@ function Home() {
       }
       dispatch(patchData(data,id))
 
+      mainData.map((item)=>(
+        dispatch(postPayment(item))
+      ))
+
     }
     else{
       let data={
         booked:true
       }
       dispatch(patchData(data,id))
+      deletePayment(id)
+
     }   
   }
 
   const handleBack=()=>{
     navigate(-1)
+  }
+  const handleNext=()=>{
+    navigate('/payment')
   }
 
   const handlePayment=()=>{
@@ -49,6 +58,10 @@ function Home() {
 
     <Grid> Select your seat
       <Link marginRight={1400} onClick={handleBack}>Back</Link>
+      
+      <Link marginRight={1400} onClick={handleNext}>Next</Link>
+
+
     <Grid  marginTop={20} justifyContent={'center'}  gridTemplateColumns={'repeat(10,1fr)'} border={'solid grey'}>
       {mainData.map((item)=>(
         <Grid onClick={()=>handleClick(item.id,item)} color={"white"}
@@ -73,3 +86,6 @@ function Home() {
 }
 
 export default Home
+
+
+
