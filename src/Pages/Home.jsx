@@ -1,4 +1,4 @@
-import { Button, Center, Grid, Link, grid } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Center, Flex, Grid, Link, grid } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deletePayment, getData, patchData, postPayment } from '../Redux/Data/action'
@@ -7,10 +7,13 @@ import { useNavigate } from 'react-router-dom'
 
 function Home() {
 
-  const mainData=useSelector((store)=>store.data.data)
+  const mainData = useSelector((store)=>store.data.data)
+  let userData=localStorage.getItem("token")
   const dispatch=useDispatch()
-  // const [select,setSelect]=useState(false)
+  const [select,setSelect]=useState([])
   const navigate=useNavigate()
+  const [payment,setPayment]=useState([])
+  
 
   console.log("maindata",mainData)
 
@@ -18,28 +21,28 @@ function Home() {
     dispatch(getData())
   },[])
 
-  const handleClick=(id,item)=>{
+  useEffect(()=>{
+    setSelect(mainData)
+  },[mainData])
+
+  // const handleClick=(id,item)=>{
    
-    if(item.booked===true){
-      let  data={
-        booked:false
-      }
-      dispatch(patchData(data,id))
-
-      mainData.map((item)=>(
-        dispatch(postPayment(item))
-      ))
-
-    }
-    else{
-      let data={
-        booked:true
-      }
-      dispatch(patchData(data,id))
-      deletePayment(id)
-
-    }   
-  }
+  //   if(item.booked===true){
+  //     let  data={
+  //       booked:false
+  //     }
+  //     dispatch(patchData(data,id))
+    
+      
+  //   }
+  //   else{
+  //     let data={
+  //       booked:true
+  //     }
+  //     dispatch(patchData(data,id))
+    
+  //   }   
+  // }
 
   const handleBack=()=>{
     navigate(-1)
@@ -49,7 +52,28 @@ function Home() {
   }
 
   const handlePayment=()=>{
+    
+  if(payment.booked===true){
+    let data={
+      booked:true
+    }
+    dispatch(patchData(data,payment.id))
+  }
+    
+  
+  }
 
+
+  const handleChoose = (data,index,userId)=>{
+    let editedData = [...select]
+
+    console.log("userData",userData,userId)
+    if(userId===userData){
+      editedData[index].booked === true?editedData[index].booked = false:editedData[index].booked = true
+    }
+
+    setSelect(editedData)
+    setPayment(select)
   }
   
 
@@ -62,10 +86,12 @@ function Home() {
       <Link marginRight={1400} onClick={handleNext}>Next</Link>
 
 
+
+
     <Grid  marginTop={20} justifyContent={'center'}  gridTemplateColumns={'repeat(10,1fr)'} border={'solid grey'}>
-      {mainData.map((item)=>(
-        <Grid onClick={()=>handleClick(item.id,item)} color={"white"}
-         bg={item.booked? 'grey': "green"}
+      {select?.map((item,index)=>(
+        <Grid onClick={()=>handleChoose(item,index,item.userId)}  color={"white"}
+         bg={item.booked===true?'green':'red'}
 
         borderRadius={10} marginTop={1} border={'solid white'} width={10} height={10} gridTemplateColumns={"repeat(3,1fr)"}>
 

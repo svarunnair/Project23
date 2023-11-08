@@ -60,6 +60,7 @@ export const postSignup=(data)=>(dispatch)=>{
         dispatch(postSignupSuccess(res.data))
         console.log("resData",res.data)
         localStorage.setItem("token",res.data.token)
+        
     })
     .catch((error)=>{
         dispatch(postSignupFailure())

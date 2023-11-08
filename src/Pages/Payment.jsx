@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPayment } from '../Redux/Data/action'
+import { deletePayment, getPayment, postPayment } from '../Redux/Data/action'
 import { Button, Grid, Link } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 
@@ -19,6 +19,7 @@ function Payment() {
     const handleBack=()=>{
         navigate(-1)
     }
+    
 
   return (
     <div>Payment
