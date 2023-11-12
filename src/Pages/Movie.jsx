@@ -110,7 +110,7 @@ export default function Movie() {
 
 
 
-
+ 
   const { colorMode, toggleColorMode } = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (

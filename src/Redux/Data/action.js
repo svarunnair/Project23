@@ -129,7 +129,11 @@ export const getData=()=>(dispatch)=>{
     })
 }
 
-export const patchData=(data,id)=>(dispatch)=>{
+export const patchData=(vData,id)=>(dispatch)=>{
+    let data = {
+        booked:vData
+    }
+  
     dispatch(patchDataRequiest())
     return axios({
         url:`http://localhost:8000/data/${id}`,
