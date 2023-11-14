@@ -13,7 +13,7 @@ function Payment() {
     const navigate=useNavigate()
     const [qrCodeImage,setQrCodeImage]=useState("")
 
-    let paymentId = uuid4();
+    // let paymentId = uuid4();
 
     console.log("payment",payment)
 
@@ -25,36 +25,37 @@ function Payment() {
         navigate(-1)
     }
 
-    let seatQr={
-        seat:payment.map((item)=>{return item.seat}),
-        paymentId:paymentId,
-        price:payment.map((item)=>{return item.price}),
-        numberOfSeats:payment.length
-    }
+//     let seatQr={
+//         seat:payment.map((item)=>{return item.seat}),
+//         paymentId:paymentId,
+//         price:payment.map((item)=>{return item.price}),
+//         numberOfSeats:payment.length
+//     }
 
-    let qrData = seatQr.join("-")
-  console.log("qrData",qrData)
+//     let qrData = seatQr.join("-")
+//   console.log("qrData",qrData)
   
-    QRCode.toDataURL(qrData)
-    .then(url => {
-      setQrCodeImage(url)
-    })
-    .catch(err => {
-      console.error(err)
-    })
+//     QRCode.toDataURL(qrData)
+//     .then(url => {
+//       setQrCodeImage(url)
+//     })
+//     .catch(err => {
+//       console.error(err)
+//     })
     
 console.log("xxxxxxxxx",qrCodeImage)
   return (
     <div>Payment
         <Grid><Link marginRight={1350} onClick={handleBack}>Back</Link></Grid>
 
-        {/* {payment.map((item)=>(
+        {payment.map((item)=>(
             <>
-            {item.seat}
+            seat no. : {item.seatNo}
+            <Img  src={item.url} />
             </>
-        ))} */}
+        ))}
 
-<Img  src={qrCodeImage} />
+
  
     </div>
 

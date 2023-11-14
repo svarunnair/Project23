@@ -60,9 +60,9 @@ let qrData = qr.join("-")
       console.error(err)
     })
     
-   seat.map((item)=>(
-    dispatch(postPayment(item))
-   ))
+  //  seat.map((item)=>(
+  //   dispatch(postPayment(item))
+  //  ))
  
 
 
@@ -109,16 +109,16 @@ let qrData = qr.join("-")
 
 
 
-// useEffect(()=>{
-//   let paymentData = {
-//     seatNo:seat.map((item)=>{return item.seat}),
-//     paymentId:paymentId,
-//     total:seat.reduce((acc,item)=>{return acc+item.price},0),
-//     numberOfSeat:seat.length,
-//     url:qrCodeImage
-//   }
-//   dispatch(postPayment(paymentData))
-// },[qrCodeImage])
+useEffect(()=>{
+  let paymentData = {
+    seatNo:seat.map((item)=>{return item.seat}),
+    paymentId:paymentId,
+    total:seat.reduce((acc,item)=>{return acc+item.price},0),
+    numberOfSeat:seat.length,
+    url:qrCodeImage
+  }
+  dispatch(postPayment(paymentData))
+},[qrCodeImage])
 
 
 
@@ -153,7 +153,7 @@ let qrData = qr.join("-")
 
     </Grid>
     <Button marginTop={10} marginLeft={550} width={200} onClick={handlePayment}>Payment</Button>
-    <Img  src={qrCodeImage} />
+    {/* <Img  src={qrCodeImage} /> */}
     </Grid >
     
 
