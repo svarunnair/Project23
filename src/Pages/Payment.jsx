@@ -103,8 +103,8 @@ export default function Payment() {
 
 <>
 
-<Center py={12}>
-      <Box
+<Center  py={12}>
+      <Box border={"solid white"}
         role={'group'}
         p={6}
         maxW={'330px'}
@@ -139,8 +139,10 @@ export default function Payment() {
             
           
         </Box> */}
+        <Text  >Ticket</Text>
         <Stack pt={10} align={'center'}>
-        <Img  src={item.url}/>
+            <Text>Scan your code:</Text> 
+       <Img  src={item.url}/>
           <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
            
           </Text>
@@ -148,7 +150,7 @@ export default function Payment() {
            Seat No. : {item.seatNo}
           </Heading>
           <Stack direction={'row'} align={'center'}>
-            <Text fontWeight={800} fontSize={'xl'}>
+            <Text color={'yellow.300'} fontWeight={800} fontSize={'xl'}>
             Total amount : Rs {item.total} /-
             </Text>
             {/* <Text textDecoration={'line-through'} color={'gray.600'}>
