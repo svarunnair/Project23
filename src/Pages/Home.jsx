@@ -117,7 +117,10 @@ useEffect(()=>{
     numberOfSeat:seat.length,
     url:qrCodeImage
   }
-  dispatch(postPayment(paymentData))
+  if(paymentData.url!==""){
+    dispatch(postPayment(paymentData))
+  }
+  
 },[qrCodeImage])
 
 
